@@ -25,14 +25,14 @@ echo res = core.std.MaskedMerge(dark, bright, core.std.Binarize(bright, 96, plan
 echo res.set_output(0)>> "%FILE%.vpy"
 
 vspipe --y4m "%FILE%.vpy" - | x264 --demuxer y4m - ^
-    --level 5.1 --preset veryslow --deblock -1:-1 ^
+    --level 5.1 --preset veryslow --deblock 0:0 ^
     --ref 12 --bframes 12 --min-keyint 1 --keyint 120 ^
     --bitrate 5800 --no-mbtree --b-adapt 2 --me umh --merange 32 ^
     --vbv-bufsize 300000 --vbv-maxrate 22000 ^
     --aq-mode=1 --aq-strength 0.9 --psy-rd 0:0.2 --rc-lookahead 70 --no-fast-pskip ^
     --colormatrix bt709 --fgo 1 -o "%FILE%.pass1.mkv" --pass 1 --slow-firstpass --stats "%FILE%.stats"
 vspipe --y4m "%FILE%.vpy" - | x264 --demuxer y4m - ^
-    --level 5.1 --preset veryslow --deblock -1:-1 ^
+    --level 5.1 --preset veryslow --deblock 0:0 ^
     --ref 12 --bframes 12 --min-keyint 1 --keyint 120 ^
     --bitrate 5800 --no-mbtree --b-adapt 2 --me umh --merange 32 ^
     --vbv-bufsize 300000 --vbv-maxrate 22000 ^
